@@ -1,0 +1,24 @@
+### To show all todo items
+GET http://localhost:8080/todo-list
+
+
+### To add new todo item
+POST http://localhost:8080/todo-list
+Content-Type: "application/json"
+
+{
+    "title": "Complete Golang Assignment",
+    "isCompleted": false
+}
+
+### To update existing todo using id
+PUT http://localhost:8080/todo-list/00000000-0000-0000-0000-000000000000
+Content-Type: "application/json"
+
+{
+    "title": "Complete Golang Assignment",
+    "isCompleted": true
+}
+
+### To delete existing todo from list using id
+DELETE  http://localhost:8080/todo-list/00000000-0000-0000-0000-000000000000
