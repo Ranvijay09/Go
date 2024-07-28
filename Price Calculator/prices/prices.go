@@ -2,6 +2,7 @@ package prices
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
@@ -36,15 +37,16 @@ func (job *TaxIncludedPriceJob) Process() {
 	err := job.LoadPrices()
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
-	fmt.Println(job.InputPrices)
 
-	resultMap := make(map[string]string)
+	resultMap := make(map[string]float64, len(job.InputPrices))
 	for _, price := range job.InputPrices {
 		taxIncludedPrice := price * (1 + job.TaxRate)
-		resultMap[fmt.Sprintf("%.2f", price)] = fmt.Sprintf("%.2f", taxIncludedPrice)
+		resultMap[fmt.Sprintf("%.2f", price)] = taxIncludedPrice
 	}
-	fmt.Println(resultMap)
+	job.TaxIncludedPrices = resultMap
+	WriteJSONToFile(fmt.Sprintf("result_%.0f.json", job.TaxRate*100), *job)
 }
 
 func NewTaxIncludedPriceJob(taxRate float64) *TaxIncludedPriceJob {
@@ -52,4 +54,19 @@ func NewTaxIncludedPriceJob(taxRate float64) *TaxIncludedPriceJob {
 		TaxRate:     taxRate,
 		InputPrices: []float64{},
 	}
+}
+
+func WriteJSONToFile(path string, data TaxIncludedPriceJob) error {
+	file, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	err = encoder.Encode(data)
+	if err != nil {
+		return err
+	}
+	file.Close()
+	return nil
 }
