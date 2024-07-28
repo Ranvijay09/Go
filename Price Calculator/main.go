@@ -1,20 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"price-calculator/prices"
+)
 
 func main() {
-	taxRates := []float64{0, 10, 20}
-
-	prices := []float64{10, 20, 30}
-
-	resultMap := make(map[float64][]float64)
+	taxRates := []float64{0, 0.10, 0.02, 0.7}
 
 	for _, taxRate := range taxRates {
-		taxIncludedPrices := make([]float64, len(prices))
-		for priceIndex, price := range prices {
-			taxIncludedPrices[priceIndex] = price + ((price / 100) * taxRate)
-		}
-		resultMap[taxRate] = taxIncludedPrices
+		priceJob := prices.NewTaxIncludedPriceJob(taxRate)
+		priceJob.Process()
 	}
-	fmt.Println(resultMap)
 }
