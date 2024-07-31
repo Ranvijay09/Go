@@ -2,7 +2,6 @@ package routes
 
 import (
 	"event-booking-app/models"
-	"event-booking-app/utils"
 	"net/http"
 	"strconv"
 
@@ -33,25 +32,13 @@ func getEvents(context *gin.Context) {
 }
 
 func createEvent(context *gin.Context) {
-	token := context.Request.Header.Get("Authorization")
-
-	if token == "" {
-		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorized!"})
-		return
-	}
-
-	userId, err := utils.VerifyToken(token)
-	if err != nil {
-		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorized!"})
-		return
-	}
-
 	var event models.Event
-	err = context.ShouldBindBodyWithJSON(&event)
+	err := context.ShouldBindBodyWithJSON(&event)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "Something Went Wrong!"})
 		return
 	}
+	userId := context.GetInt64("userId")
 	event.UserID = userId
 	err = event.Save()
 	if err != nil {
