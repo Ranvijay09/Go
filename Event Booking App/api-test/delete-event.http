@@ -1,3 +1,3 @@
-DELETE  http://localhost:8080/events/4
+DELETE  http://localhost:8080/events/1
 content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZvaWQucG9pbnRlckBnbWFpbC5jb20iLCJleHAiOjE3MjI0Mjg2NjIsInVzZXJJZCI6MX0.h6HiYqS5E-65GF9Ysk4rcc9K9ULhShCqJcKL0ScRStY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZvaWQucG9pbnRlckBnbWFpbC5jb20iLCJleHAiOjE3MjI0OTc3OTMsInVzZXJJZCI6MX0.0sDckfOX6RMsdUkIxuwQVkXacNFWWuosV-qiwsNmX6c
