@@ -1,9 +1,10 @@
-PUT http://localhost:8080/events/3
+PUT http://localhost:8080/events/1
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZvaWQucG9pbnRlckBnbWFpbC5jb20iLCJleHAiOjE3MjI0OTc3OTMsInVzZXJJZCI6MX0.0sDckfOX6RMsdUkIxuwQVkXacNFWWuosV-qiwsNmX6c
 
 {
-	"name": "Test Event",
-	"description": "Test Description",
-	"location": "London",
-	"dateTime": "2024-01-08T13:30:00.000Z"
+	"name": "University Convocation",
+	"description": "Convocation Ceremony for 2022 passouts",
+	"location": "Andheri, Mumbai",
+	"dateTime": "2023-04-03T18:00:00.000Z"
 }

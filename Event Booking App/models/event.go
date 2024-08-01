@@ -54,7 +54,7 @@ func GetAllEvents() ([]Event, error) {
 	return events, nil
 }
 
-func GetEventByID(eventId int) (*Event, error) {
+func GetEventByID(eventId int64) (*Event, error) {
 	query := "SELECT * FROM events WHERE id = ?"
 
 	dataRow := db.DB.QueryRow(query, eventId)
@@ -92,6 +92,22 @@ func (e Event) Remove() error {
 	}
 	defer stmt.Close()
 	_, err = stmt.Exec(e.ID)
+
+	return err
+}
+
+func (e Event) Register(userId int64) error {
+	query := "INSERT INTO registrations(user_id, event_id) VALUES (?, ?)"
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(userId, e.ID)
 
 	return err
 }

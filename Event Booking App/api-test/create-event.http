@@ -1,10 +1,10 @@
 POST http://localhost:8080/events
 content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZvaWQucG9pbnRlckBnbWFpbC5jb20iLCJleHAiOjE3MjI0Mjg2NjIsInVzZXJJZCI6MX0.h6HiYqS5E-65GF9Ysk4rcc9K9ULhShCqJcKL0ScRStY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZvaWQucG9pbnRlckBnbWFpbC5jb20iLCJleHAiOjE3MjI0OTc3OTMsInVzZXJJZCI6MX0.0sDckfOX6RMsdUkIxuwQVkXacNFWWuosV-qiwsNmX6c
 
 {
-	"name": "Test Event",
-	"description": "Test Description",
-	"location": "New York",
-	"dateTime": "2024-01-01T13:30:00.000Z"
+	"name": "University Convocation",
+	"description": "Convocation Ceremony for 2022 passouts",
+	"location": "Andheri, Mumbai",
+	"dateTime": "2023-04-03T18:30:00.000Z"
 }
